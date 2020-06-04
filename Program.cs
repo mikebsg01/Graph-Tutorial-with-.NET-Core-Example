@@ -41,6 +41,7 @@ namespace GraphTutorial
                 Console.WriteLine("0. Exit");
                 Console.WriteLine("1. Display access token");
                 Console.WriteLine("2. List calendar events");
+                Console.WriteLine("3. List subscriptions");
 
                 try
                 {
@@ -65,6 +66,10 @@ namespace GraphTutorial
                     case 2:
                         // List the calendar
                         ListCalendarEvents();
+                        break;
+                    case 3:
+                        // List subscriptions
+                        ListSubscriptions();
                         break;
                     default:
                         Console.WriteLine("Invalid choice! Please try again.");
@@ -101,6 +106,17 @@ namespace GraphTutorial
                 Console.WriteLine($"  Organizer: {calendarEvent.Organizer.EmailAddress.Name}");
                 Console.WriteLine($"  Start: {FormatDateTimeTimeZone(calendarEvent.Start)}");
                 Console.WriteLine($"  End: {FormatDateTimeTimeZone(calendarEvent.End)}");
+            }
+        }
+        static void ListSubscriptions()
+        {
+            var subscriptions = GraphHelper.GetSubscriptionsAsync().Result;
+
+            Console.WriteLine("Subscriptions:");
+
+            foreach (var subscription in subscriptions)
+            {
+                Console.WriteLine($"ID: {subscription.Id}");
             }
         }
 

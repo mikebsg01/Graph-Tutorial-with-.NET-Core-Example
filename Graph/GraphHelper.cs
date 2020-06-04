@@ -52,5 +52,21 @@ namespace GraphTutorial
                 return null;
             }
         }
+
+        public static async Task<IEnumerable<Subscription>> GetSubscriptionsAsync()
+        {
+            try
+            {
+                // GET /me/subscriptions
+                var resultPage = await graphClient.Subscriptions.Request().GetAsync();
+
+                return resultPage.CurrentPage;
+            }
+            catch (ServiceException ex)
+            {
+                Console.WriteLine($"Error getting events: {ex.Message}");
+                return null;
+            }
+        }
     }
 }
