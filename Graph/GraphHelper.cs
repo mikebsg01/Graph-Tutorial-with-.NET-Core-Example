@@ -57,7 +57,7 @@ namespace GraphTutorial
         {
             try
             {
-                // GET /me/subscriptions
+                // GET /subscriptions
                 var resultPage = await graphClient.Subscriptions.Request().GetAsync();
 
                 return resultPage.CurrentPage;
